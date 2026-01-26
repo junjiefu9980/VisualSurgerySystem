@@ -1,0 +1,8 @@
+numpy
+opencv-python
+matplotlib
+plotly
+scikit-learn
+tqdm
+torch
+ultralytics
