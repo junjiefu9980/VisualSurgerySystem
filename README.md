@@ -20,11 +20,16 @@ and provides visualization and intelligent feedback agent modules to assist in s
 ```
 VisualSurgerySystem/
 ├── data/                 
-│   ├── original/         # original dataset, not uploaded
+│   ├── dataset/         # original dataset, not uploaded
 │   ├── meta/             
 │   ├── sample/           
 │   └── temp/             # intermediate output cache, not uploaded
 ├── output/               # result
+│   ├── audit/            
+│   ├── detections/        
+│   ├── tracks/
+│   ├── metrics/
+│   └── figures/ 
 ├── src/                  # all .py
 ├── README.md             # project description
 ├── requirements.txt      # list of library
