@@ -21,12 +21,24 @@ and provides visualization and intelligent feedback agent modules to assist in s
 VisualSurgerySystem/
 ├── data/                 
 │   ├── dataset/         # original dataset, not uploaded
+│   │   ├── 000000/
+│   │   │   ├── regular/
+│   │   │   │   ├── left_video.mp4
+│   │   │   │   └── right_video.mp4
+│   │   │   ├── bbox_left.json
+│   │   │   ├── bbox_right.json
+│   │   │   ├── keypoints_left.yaml
+│   │   │   └── keypoints_right.yaml
+│   │   ├── 000001/
+│   │   ├── ...
+│   │   └── 000033/
 │   ├── meta/             
 │   ├── sample/           
 │   └── temp/             # intermediate output cache, not uploaded
 ├── output/               # result
 │   ├── audit/            
 │   ├── detections/        
+│   ├── frames/
 │   ├── tracks/
 │   ├── metrics/
 │   └── figures/ 
@@ -53,10 +65,10 @@ python src/2.1_detect_and_visualize.py
 ## 3. Module Description
 ```
 │File Name                  │Description
-│---------------------------│-----------------
-│1_extract_frames.py        │Extract video frames                
-│2.1_detect_and_visualize.py│Detect and visualize instrument keypoints
-│3_XXXXX
+│---------------------------│----------------------------------
+│extract_frames.py          │Extract video frames                
+│visualize_verify.py        │Detect and visualize instrument keypoints
+│XXXXX.py
 │
 ```
 
