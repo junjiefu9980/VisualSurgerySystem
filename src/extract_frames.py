@@ -1,12 +1,8 @@
 import json
-import argparse
-import keyword
-import subprocess
 import yaml
 import csv
 import random
 from pathlib import Path
-from typing import Optional, Dict, List
 
 import os
 import cv2
