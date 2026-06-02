@@ -1,3 +1,7 @@
+"""
+Extract all frames from dataset, containing train/val/test
+output frame_table.csv file as a GT table to evaluate visual model
+"""
 import json
 import yaml
 import csv
@@ -9,11 +13,11 @@ import cv2
 
 
 # ===============================================
-# Find the root path in Project   -> Reproducible if structure and environment are same
+# path
 # ================================================
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_ROOT = REPO_ROOT / "data" / "dataset"
-TEMP_ROOT = REPO_ROOT / "data" / "temp" / "frames"
+TEMP_ROOT = REPO_ROOT / "data" / "frames"
 
 # 1. Find all regular mp4 files in local path
 # ==============================================
@@ -222,7 +226,7 @@ def extract_frames(video_path, out_dir, target_fps=30, save_frames=False):
         for fail in failed:
             print("[INFO] Failed videos:", "/".join(Path(fail[0]).parts[-3:]), fail[1])
     
-    return save_idr, frame_idx, "done"
+    return save_idr, frame_idx, "done"      # type: ignore
 
 # 4. Build frame table for each video, containing frame path, bbox and keypoints
 # ==========================================
@@ -351,8 +355,8 @@ def main():
     audit_csv_path = REPO_ROOT / "output" / "audit" / "audit_frames.csv"
     ok_videos = audit_check(video_data, audit_csv_path)
 
-    # Step 3: Extract frames from each video
-    extract_frames(ok_videos, TEMP_ROOT, target_fps=30, save_frames=False)
+    # Step 3: Extract frames from each video - if already extracted before, save_frames=False
+    extract_frames(ok_videos, TEMP_ROOT, target_fps=30, save_frames=True)
 
     # Step 4: Build frame table for each video
     out_dir = REPO_ROOT / "output" / "frames"

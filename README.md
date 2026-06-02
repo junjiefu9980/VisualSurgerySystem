@@ -1,88 +1,54 @@
 # Visual-based Surgery Skill Evaluation System
 
-### Dataset Source Statement
+## Dataset Source Statement
 
-This project uses the SurgPose dataset, a publicly available dataset for articulated robotic surgical tool pose estimation and tracking. 
-SurgPose provides semantic keypoints for surgical instrument videos,
-facilitating visual-based pose estimation and trajectory analysis. 
-For full details, refer to the official GitHub and original paper.
+This project uses the **SurgPose** dataset, a public dataset for articulated robotic surgical tool pose estimation and tracking.
+SurgPose provides stereo surgical videos and semantic keypoint annotations for instrument pose estimation and trajectory analysis.
 
 Dataset repository: https://github.com/zijianwu1231/SurgPose  
 Paper: https://arxiv.org/abs/2502.11534
 
+## Overview
 
-### Overview
-Base on the operation video of monocular endoscope surgical robot,
-this project detects and evaluates the motion trajectory of surgical instruments through computer vision technology,
-and provides visualization and intelligent feedback agent modules to assist in surgical skill training.
+This repository implements **a vision-based surgical skill evaluation system** for **video-based surgical skill assessment**.
+The main design principle is **stabilization as a prerequisite for evaluation**: the system first builds reliable 2D and 3D trajectory outputs, then uses policy routing and Temporal Smoothing before generating case-level feedback.
 
-## 1. Project Structure
-```
-VisualSurgerySystem/
-├── data/                 
-│   ├── dataset/         # original dataset, not uploaded
-│   │   ├── 000000/
-│   │   │   ├── regular/
-│   │   │   │   ├── left_video.mp4
-│   │   │   │   └── right_video.mp4
-│   │   │   ├── bbox_left.json
-│   │   │   ├── bbox_right.json
-│   │   │   ├── keypoints_left.yaml
-│   │   │   └── keypoints_right.yaml
-│   │   ├── 000001/
-│   │   ├── ...
-│   │   └── 000033/
-│   ├── meta/             
-│   ├── sample/           
-│   └── temp/             # intermediate output cache, not uploaded
-├── output/               # result
-│   ├── audit/            
-│   ├── detections/        
-│   ├── frames/
-│   ├── tracks/
-│   ├── metrics/
-│   └── figures/ 
-├── src/                  # all .py
-├── README.md             # project description
-├── requirements.txt      # list of library
-└── .gitignore            # Git ignore configuration
-```
-#### XXXXXX[description]
+The current packaged run uses stereo endoscopic video pairs / left-right views when triangulation is feasible. The default pipeline reuses cached YOLO and MonSter outputs when the heavy rebuild inputs are not available, rebuilds `Tri` locally, refreshes evaluation tables, and then generates simplified agent outputs.
 
-## 2. Environment Configuration
+## 1. Environment Configuration
 
-### 2.1 Install dependencies
-```commandline
+Create and activate a Python environment, then install the default dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
-### 2.2 Run modules
-```commandline
-python src/1_extract_frames.py
-python src/2.1_detect_and_visualize.py
-...
+
+The default reproducible run does NOT require YOLO training or MonSter targeted rebuild. It can reuse:
+
+- `output/detections/2d_results.csv`
+- `output/detections/3d_monster_results.csv`
+
+For full data or rebuild inputs, refer to the SurgPose GitHub link above.
+
+## 2. Main Reproduction Commands
+
+Run the visual pipeline:
+
+```bash
+python src/pipeline/run_pipeline.py
 ```
 
-## 3. Module Description
-```
-│File Name                  │Description
-│---------------------------│----------------------------------
-│extract_frames.py          │Extract video frames                
-│visualize_verify.py        │Detect and visualize instrument keypoints
-│XXXXX.py
-│
+Run the simplified agent outputs:
+
+```bash
+python src/agent/run_agent_pipeline.py
 ```
 
-## 4. Project Highlights
+## 3. Output & Summary
 
-- **YOLOv11**: surgical instrument keypoint detection
-- **Kalman Filter**: denoising and smoothing the observed tool trajectories
-- **Metrics Calculation**: measures smoothness, efficiency and XXXX of surgical movements 
-- **Visualization**: outputs trajectory plots and radar chars for skill analysis
-- **Teaching Agent**: generates feedback automatically by comparing user's performance with expert demonstrations
+The visual pipeline follows: 2D observation -> hybrid 3D reconstruction -> policy-based route selection (`tri`, `monster`, `2d`, `None`) -> temporal smoothing -> final case-level summary.
 
-### * License
+The agent is used after Policy-Based Selection and Temporal Smoothing as a case-level evidence organisation module.
+It produces three layers of evidence: case-level summary, structured event evidence and natural-language feedback. It automatically groups cases by route and selects representative cases for qualitative review. It then draws only the final chosen method for each selected case.
 
-This project is for academic and research use only
-
-## 6. XXXXX
-### Others
+The selected cases are recorded in `output/agent/summary.csv`.

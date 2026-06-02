@@ -1,0 +1,2 @@
+time,eval_2d_csv,precision,recall,f1,mAP50,mAP50-95,model_pass,reason
+2026-04-10T11:44:44,/Users/junjie/Personal_Project/VisualSurgerySystem/output/evaluation/evaluate_2d_results.csv,0.931432,0.908497,0.919821,0.894885,0.625391,1,pass

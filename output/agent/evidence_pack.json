@@ -1,0 +1,350 @@
+{
+  "meta": {
+    "fps": 30.0,
+    "k_mad": 6.0,
+    "k_break": 3.0,
+    "k_gate": 6.0,
+    "track_window": 30,
+    "continuity": true,
+    "run_sides": [
+      "left",
+      "right"
+    ],
+    "min_len": 5,
+    "generated_at": "2026-04-10T23:07:04",
+    "only_final": true,
+    "note": "trajectory-quality only"
+  },
+  "cases": [
+    {
+      "case_id": "33",
+      "side": "left",
+      "final_mode": "None",
+      "scenario": "c1_2d_fail_none",
+      "chosen_method": "2d",
+      "anchor_kpt": "L1",
+      "gate_reasons": {
+        "reason_2d": "f1<0.85",
+        "reason_tri": "None",
+        "reason_monster": "None"
+      },
+      "methods": {
+        "2d": {
+          "events": [
+            {
+              "case_id": "33",
+              "method": "2d",
+              "start_frame": 902,
+              "end_frame": 906,
+              "start_time_s": 30.0667,
+              "end_time_s": 30.2,
+              "event_type": "JUMP_OUTLIER",
+              "severity": 1.0,
+              "evidence": {
+                "threshold": {
+                  "value": 121.8748170127858
+                },
+                "stats": {
+                  "metric": "disp"
+                }
+              }
+            }
+          ],
+          "figures": [
+            "output/agent/figures/33_left_2d_traj.png",
+            "output/agent/figures/33_left_2d_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 181.080743,
+            "jerk_p95": 3521733.458562,
+            "event_count": 1,
+            "red_total_s": 0.166667
+          },
+          "kpt_id": "L1",
+          "kpt_match_anchor": 1,
+          "gate_pass": 0,
+          "gate_reason": "f1<0.85"
+        }
+      },
+      "selection_reason": "C1 2d fail: reason_2d=f1<0.85, 2d_f1=0.625719, policy_mode=None"
+    },
+    {
+      "case_id": "33",
+      "side": "right",
+      "final_mode": "None",
+      "scenario": "c1_2d_fail_none",
+      "chosen_method": "2d",
+      "anchor_kpt": "R1",
+      "gate_reasons": {
+        "reason_2d": "f1<0.85",
+        "reason_tri": "None",
+        "reason_monster": "None"
+      },
+      "methods": {
+        "2d": {
+          "events": [
+            {
+              "case_id": "33",
+              "method": "2d",
+              "start_frame": 13,
+              "end_frame": 19,
+              "start_time_s": 0.4333,
+              "end_time_s": 0.6333,
+              "event_type": "JITTER_SPIKE",
+              "severity": 0.447,
+              "evidence": {
+                "threshold": {
+                  "type": "median+k*MAD",
+                  "k": 6.0,
+                  "value": 10656229.191643244
+                },
+                "stats": {
+                  "max_jerk": 11103111.354255,
+                  "jerk_rms": 10992358.71328,
+                  "jerk_median": 741239.979264,
+                  "jerk_mad": 674294.203611
+                },
+                "severity_level": "low"
+              }
+            }
+          ],
+          "figures": [
+            "output/agent/figures/33_right_2d_traj.png",
+            "output/agent/figures/33_right_2d_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 345.273361,
+            "jerk_p95": 8880190.993036,
+            "event_count": 1,
+            "red_total_s": 0.233333
+          },
+          "kpt_id": "R1",
+          "kpt_match_anchor": 1,
+          "gate_pass": 0,
+          "gate_reason": "f1<0.85"
+        }
+      },
+      "selection_reason": "C1 2d fail: reason_2d=f1<0.85, 2d_f1=0.625719, policy_mode=None"
+    },
+    {
+      "case_id": "31",
+      "side": "left",
+      "final_mode": "2d",
+      "scenario": "c2_fallback_2d",
+      "chosen_method": "2d",
+      "anchor_kpt": "L2",
+      "gate_reasons": {
+        "reason_2d": "pass",
+        "reason_tri": "valid_all<0.80",
+        "reason_monster": "disp_p95>90.0"
+      },
+      "methods": {
+        "2d": {
+          "events": [],
+          "figures": [
+            "output/agent/figures/31_left_2d_traj.png",
+            "output/agent/figures/31_left_2d_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 249.580321,
+            "jerk_p95": 4599633.93818,
+            "event_count": 0,
+            "red_total_s": 0.0
+          },
+          "kpt_id": "L2",
+          "kpt_match_anchor": 1,
+          "gate_pass": 1,
+          "gate_reason": "pass"
+        }
+      },
+      "selection_reason": "C2 fallback 2d: tri fail (valid_all<0.80), monster fail (disp_p95>90.0), 2d_f1=0.885807"
+    },
+    {
+      "case_id": "31",
+      "side": "right",
+      "final_mode": "2d",
+      "scenario": "c2_fallback_2d",
+      "chosen_method": "2d",
+      "anchor_kpt": "R1",
+      "gate_reasons": {
+        "reason_2d": "pass",
+        "reason_tri": "valid_all<0.80",
+        "reason_monster": "disp_p95>90.0"
+      },
+      "methods": {
+        "2d": {
+          "events": [],
+          "figures": [
+            "output/agent/figures/31_right_2d_traj.png",
+            "output/agent/figures/31_right_2d_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 12.240511,
+            "jerk_p95": 134887.197148,
+            "event_count": 0,
+            "red_total_s": 0.0
+          },
+          "kpt_id": "R1",
+          "kpt_match_anchor": 1,
+          "gate_pass": 1,
+          "gate_reason": "pass"
+        }
+      },
+      "selection_reason": "C2 fallback 2d: tri fail (valid_all<0.80), monster fail (disp_p95>90.0), 2d_f1=0.885807"
+    },
+    {
+      "case_id": "24",
+      "side": "left",
+      "final_mode": "tri",
+      "scenario": "c3_tri_pass",
+      "chosen_method": "tri",
+      "anchor_kpt": "L1",
+      "gate_reasons": {
+        "reason_2d": "pass",
+        "reason_tri": "pass",
+        "reason_monster": "None"
+      },
+      "methods": {
+        "tri": {
+          "events": [],
+          "figures": [
+            "output/agent/figures/24_left_tri_traj.png",
+            "output/agent/figures/24_left_tri_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 18.575077,
+            "jerk_p95": 308320.964585,
+            "event_count": 0,
+            "red_total_s": 0.0
+          },
+          "kpt_id": "L1",
+          "kpt_match_anchor": 1,
+          "gate_pass": 1,
+          "gate_reason": "pass"
+        }
+      },
+      "selection_reason": "C3 tri pass: tri_valid_all=0.978771, tri_disp_p95=26.893363, 2d_f1=0.984596"
+    },
+    {
+      "case_id": "24",
+      "side": "right",
+      "final_mode": "tri",
+      "scenario": "c3_tri_pass",
+      "chosen_method": "tri",
+      "anchor_kpt": "R1",
+      "gate_reasons": {
+        "reason_2d": "pass",
+        "reason_tri": "pass",
+        "reason_monster": "None"
+      },
+      "methods": {
+        "tri": {
+          "events": [],
+          "figures": [
+            "output/agent/figures/24_right_tri_traj.png",
+            "output/agent/figures/24_right_tri_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 20.653815,
+            "jerk_p95": 355905.199001,
+            "event_count": 0,
+            "red_total_s": 0.0
+          },
+          "kpt_id": "R1",
+          "kpt_match_anchor": 1,
+          "gate_pass": 1,
+          "gate_reason": "pass"
+        }
+      },
+      "selection_reason": "C3 tri pass: tri_valid_all=0.978771, tri_disp_p95=26.893363, 2d_f1=0.984596"
+    },
+    {
+      "case_id": "20",
+      "side": "left",
+      "final_mode": "monster",
+      "scenario": "c4_monster_rescue",
+      "chosen_method": "monster",
+      "anchor_kpt": "L1",
+      "gate_reasons": {
+        "reason_2d": "pass",
+        "reason_tri": "valid_all<0.80",
+        "reason_monster": "pass"
+      },
+      "methods": {
+        "monster": {
+          "events": [],
+          "figures": [
+            "output/agent/figures/20_left_monster_traj.png",
+            "output/agent/figures/20_left_monster_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 22.480295,
+            "jerk_p95": 324530.420029,
+            "event_count": 0,
+            "red_total_s": 0.0
+          },
+          "kpt_id": "L1",
+          "kpt_match_anchor": 1,
+          "gate_pass": 1,
+          "gate_reason": "pass"
+        }
+      },
+      "selection_reason": "C4 monster rescue: tri fail (valid_all<0.80); tri_disp_p95=35.805868 -> monster_disp_p95=39.528091"
+    },
+    {
+      "case_id": "20",
+      "side": "right",
+      "final_mode": "monster",
+      "scenario": "c4_monster_rescue",
+      "chosen_method": "monster",
+      "anchor_kpt": "R2",
+      "gate_reasons": {
+        "reason_2d": "pass",
+        "reason_tri": "valid_all<0.80",
+        "reason_monster": "pass"
+      },
+      "methods": {
+        "monster": {
+          "events": [],
+          "figures": [
+            "output/agent/figures/20_right_monster_traj.png",
+            "output/agent/figures/20_right_monster_timeline.png"
+          ],
+          "key_metrics": {
+            "track_frames": 1001,
+            "valid_ratio": 1.0,
+            "disp_p95": 2.711428,
+            "jerk_p95": 52906.842095,
+            "event_count": 0,
+            "red_total_s": 0.0
+          },
+          "kpt_id": "R2",
+          "kpt_match_anchor": 1,
+          "gate_pass": 1,
+          "gate_reason": "pass"
+        }
+      },
+      "selection_reason": "C4 monster rescue: tri fail (valid_all<0.80); tri_disp_p95=35.805868 -> monster_disp_p95=39.528091"
+    }
+  ],
+  "selected_case_reasons": {
+    "33": "C1 2d fail: reason_2d=f1<0.85, 2d_f1=0.625719, policy_mode=None",
+    "31": "C2 fallback 2d: tri fail (valid_all<0.80), monster fail (disp_p95>90.0), 2d_f1=0.885807",
+    "24": "C3 tri pass: tri_valid_all=0.978771, tri_disp_p95=26.893363, 2d_f1=0.984596",
+    "20": "C4 monster rescue: tri fail (valid_all<0.80); tri_disp_p95=35.805868 -> monster_disp_p95=39.528091"
+  }
+}

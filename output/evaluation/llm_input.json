@@ -1,0 +1,174 @@
+{
+  "summary": {
+    "time": "2026-04-10T11:45:03",
+    "total_cases": 17,
+    "policy_tri_cases": 9,
+    "policy_monster_cases": 3,
+    "policy_2d_cases": 3,
+    "policy_none_cases": 2,
+    "bad_case_count": 2,
+    "bad_case_ids": "28|33",
+    "bad_case_note": "bad case: visual model failed, kalman skipped in policy mode",
+    "model_gate_pass": 1,
+    "model_gate_reason": "pass",
+    "model_precision": 0.931432,
+    "model_recall": 0.908497,
+    "model_f1": 0.919821,
+    "model_mAP50": 0.894885,
+    "model_mAP50_95": 0.625391,
+    "test2d_precision": 0.931432,
+    "test2d_recall": 0.908497,
+    "test2d_f1": 0.919821,
+    "test2d_mAP50": 0.894885,
+    "test2d_mAP50_95": 0.625391,
+    "tri_valid_all": 0.80626,
+    "tri_disp_p95": 36.466666,
+    "monster_valid_all": 0.978105,
+    "monster_disp_p95": 98.755725,
+    "2d_disp_p95_raw": 246.2237,
+    "2d_disp_p95_kf": 99.670464,
+    "2d_improve_disp_p95": 146.553235,
+    "tri_disp_p95_raw": 44.441905,
+    "tri_disp_p95_kf": 29.373911,
+    "tri_improve_disp_p95": 15.067994,
+    "monster_disp_p95_raw": 58.608418,
+    "monster_disp_p95_kf": 21.875515,
+    "monster_improve_disp_p95": 36.732904
+  },
+  "policy_counts": {
+    "tri": 9,
+    "monster": 3,
+    "2d": 3,
+    "None": 2
+  },
+  "bad_cases": {
+    "count": 2,
+    "case_ids": [
+      "28",
+      "33"
+    ],
+    "note": "mode=None means bad case, keep empty in policy-based output"
+  },
+  "kalman_ablation": [
+    {
+      "method": "2d",
+      "disp_p95_raw": 246.2237,
+      "disp_p95_kf": 99.670464,
+      "improve_disp_p95": 146.553235,
+      "jitter_med_raw": 14.99913,
+      "jitter_med_kf": 5.211437,
+      "improve_jitter_med": 9.787692
+    },
+    {
+      "method": "3d_monster",
+      "disp_p95_raw": 58.608418,
+      "disp_p95_kf": 21.875515,
+      "improve_disp_p95": 36.732904,
+      "jitter_med_raw": 8.122471,
+      "jitter_med_kf": 2.687649,
+      "improve_jitter_med": 5.434823
+    },
+    {
+      "method": "3d_tri",
+      "disp_p95_raw": 44.441905,
+      "disp_p95_kf": 29.373911,
+      "improve_disp_p95": 15.067994,
+      "jitter_med_raw": 9.670655,
+      "jitter_med_kf": 4.132749,
+      "improve_jitter_med": 5.537907
+    }
+  ],
+  "model_gate": {
+    "pass": true,
+    "reason": "pass",
+    "metrics": {
+      "precision": 0.931432,
+      "recall": 0.908497,
+      "f1": 0.919821,
+      "mAP50": 0.894885,
+      "mAP50_95": 0.625391
+    }
+  },
+  "thresholds": {
+    "2d_gate": {
+      "f1_min": 0.85,
+      "map50_min": 0.8
+    },
+    "tri_gate": {
+      "valid_all_min": 0.8,
+      "z_p95_max": 300.0,
+      "disp_p95_max": 260.0,
+      "z_neg_ratio_max": 0.1
+    },
+    "monster_gate": {
+      "valid_all_min": 0.85,
+      "z_p95_max": 300.0,
+      "disp_p95_max": 90.0
+    }
+  },
+  "artifacts": {
+    "final_case_table_csv": "/Users/junjie/Personal_Project/VisualSurgerySystem/output/evaluation/final_case_table.csv",
+    "evaluate_kalman_csv": "/Users/junjie/Personal_Project/VisualSurgerySystem/output/evaluation/evaluate_kalman.csv"
+  },
+  "representative_cases": {
+    "c1_2d_fail_none": {
+      "case_id": "33",
+      "policy_mode": "None",
+      "chosen_code": "None",
+      "reason_2d": "f1<0.85",
+      "reason_tri": "None",
+      "reason_monster": "None",
+      "2d_f1": 0.625719,
+      "tri_valid_all": "None",
+      "tri_disp_p95": "None",
+      "monster_disp_p95": "None",
+      "chosen_kf_improve_disp_p95": "None",
+      "chosen_kf_improve_jitter_med": "None"
+    },
+    "c2_fallback_2d": {
+      "case_id": "31",
+      "policy_mode": "2d",
+      "chosen_code": "2d",
+      "reason_2d": "pass",
+      "reason_tri": "valid_all<0.80",
+      "reason_monster": "disp_p95>90.0",
+      "2d_f1": 0.885807,
+      "tri_valid_all": 0.481768,
+      "tri_disp_p95": 1.625451,
+      "monster_disp_p95": 127.698051,
+      "chosen_kf_improve_disp_p95": 466.03675,
+      "chosen_kf_improve_jitter_med": 13.941786
+    },
+    "c3_tri_pass": {
+      "case_id": "24",
+      "policy_mode": "tri",
+      "chosen_code": "tri",
+      "reason_2d": "pass",
+      "reason_tri": "pass",
+      "reason_monster": "None",
+      "2d_f1": 0.984596,
+      "tri_valid_all": 0.978771,
+      "tri_disp_p95": 26.893363,
+      "monster_disp_p95": "None",
+      "chosen_kf_improve_disp_p95": 10.053548,
+      "chosen_kf_improve_jitter_med": 3.721777
+    },
+    "c4_monster_rescue": {
+      "case_id": "20",
+      "policy_mode": "monster",
+      "chosen_code": "monster",
+      "reason_2d": "pass",
+      "reason_tri": "valid_all<0.80",
+      "reason_monster": "pass",
+      "2d_f1": 0.912379,
+      "tri_valid_all": 0.742258,
+      "tri_disp_p95": 35.805868,
+      "monster_disp_p95": 39.528091,
+      "chosen_kf_improve_disp_p95": 24.215619,
+      "chosen_kf_improve_jitter_med": 2.680594
+    },
+    "bad_case": {
+      "case_id": "28"
+    }
+  }
+}

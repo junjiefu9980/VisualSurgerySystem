@@ -4,8 +4,11 @@ __pycache__/
 *$py.class
 
 # dataset
-data/dataset/
-data/temp/
+data/
+
+# local/generated caches
+tmp_docx_test/
+.mplconfig/
 
 # C extensions
 *.so

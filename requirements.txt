@@ -1,8 +1,7 @@
 numpy
 opencv-python
 matplotlib
-plotly
-scikit-learn
-tqdm
+PyYAML
 torch
+torchvision
 ultralytics
